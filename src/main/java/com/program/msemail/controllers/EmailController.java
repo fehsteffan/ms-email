@@ -15,7 +15,7 @@ import com.program.msemail.dto.EmailDto;
 import com.program.msemail.models.EmailModel;
 import com.program.msemail.services.EmailService;
 
-import net.bytebuddy.asm.Advice.Return;
+
 
 @RestController
 @RequestMapping(value="email")
@@ -28,11 +28,8 @@ public class EmailController {
 	public ResponseEntity<EmailModel> sendingEmail(@RequestBody @Valid EmailDto emailDto) {
 		EmailModel emailModel = new EmailModel();
 		BeanUtils.copyProperties(emailDto, emailModel);
-		service.sendEmail(emailDto);
+		service.sendEmail(emailModel);
 		return new ResponseEntity<>(emailModel, HttpStatus.CREATED);
 	}
-	
-	
-	
 
 }
